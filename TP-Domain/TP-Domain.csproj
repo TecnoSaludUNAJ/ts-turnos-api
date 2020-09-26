@@ -5,9 +5,4 @@
     <RootNamespace>TP_Domain</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="DTOs\" />
-  </ItemGroup>
-
 </Project>
