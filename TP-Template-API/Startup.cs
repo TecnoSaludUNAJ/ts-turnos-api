@@ -11,6 +11,8 @@ using SqlKata.Compilers;
 using TP_AccessData.Commands;
 using TP_Domain.Commands;
 using TP_Application.Services;
+using TP_Domain.Queries;
+using TP_AccessData.Queries;
 
 namespace TP_Template_API
 {
@@ -42,6 +44,7 @@ namespace TP_Template_API
 
             services.AddTransient<IGenericRepository, GenericsRepository>();
             services.AddTransient<ITurnoService, TurnoService>();
+            services.AddTransient<ITurnoQuery, TurnoQuery>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
