@@ -1,21 +1,16 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using TP_AccessData;
-using Microsoft.EntityFrameworkCore;
 using SqlKata.Compilers;
+using TP_AccessData.Commands;
+using TP_Domain.Commands;
+using TP_Application.Services;
 
 namespace TP_Template_API
 {
@@ -44,6 +39,9 @@ namespace TP_Template_API
             {
                 return new SqlConnection(connectionString);
             });
+
+            services.AddTransient<IGenericRepository, GenericsRepository>();
+            services.AddTransient<ITurnoService, TurnoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
