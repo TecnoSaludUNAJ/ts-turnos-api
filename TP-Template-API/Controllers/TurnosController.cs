@@ -16,11 +16,42 @@ namespace TP_Template_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(TurnoDto alumno)
+        public IActionResult Post(TurnoDto turno)
         {
             try
             {
-                return new JsonResult(_service.CreateTurno(alumno)) { StatusCode = 201 };
+                return new JsonResult(_service.CreateTurno(turno)) { StatusCode = 201 };
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            try
+            {
+                return new JsonResult(_service.GetAllTurnos()) { StatusCode = 200 };
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{Id?}")]
+        public IActionResult GetById(string Id)
+        {
+            try
+            {
+                ResponseTurnoDto turno = _service.GetById(Id);
+                if (turno != null)
+                {
+                    return new JsonResult(turno) { StatusCode = 200 };
+                }
+                return new JsonResult(turno) { StatusCode = 404 };
             }
             catch (Exception e)
             {
