@@ -44,7 +44,10 @@ namespace TP_Template_API
 
             services.AddTransient<IGenericRepository, GenericsRepository>();
             services.AddTransient<ITurnoService, TurnoService>();
+            services.AddTransient<ICalendarioTurnosService, CalendarioTurnosService>();
             services.AddTransient<ITurnoQuery, TurnoQuery>();
+            services.AddTransient<ICalendarioTurnosQuery, CalendarioTurnosQuery>();
+            services.AddTransient<IDiaQuery, DiaQuery>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
