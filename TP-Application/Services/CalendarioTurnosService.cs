@@ -9,7 +9,7 @@ namespace TP_Application.Services
 {
     public interface ICalendarioTurnosService
     {
-        CalendarioTurnos CreateCalendarioTurnos(CalendarioTurnosDto calendarioTurno);
+        ResponseCalendarioTurnosDto CreateCalendarioTurnos(CalendarioTurnosDto calendarioTurno);
         List<ResponseCalendarioTurnosDto> GetAllCalendarioTurnos();
     }
     public class CalendarioTurnosService : ICalendarioTurnosService
@@ -24,21 +24,27 @@ namespace TP_Application.Services
             _queryDia = queryDia;
         }
 
-        public CalendarioTurnos CreateCalendarioTurnos(CalendarioTurnosDto calendarioTurno)
+        public ResponseCalendarioTurnosDto CreateCalendarioTurnos(CalendarioTurnosDto calendarioTurno)
         {
             Dia dia = _queryDia.GetById(calendarioTurno.IdDia);
 
             CalendarioTurnos entity = new CalendarioTurnos
             {
                 IdEspecialista = calendarioTurno.IdEspecialista,
-                Dia = dia,
+                DiaId = dia.Id,
                 HoraInicio = calendarioTurno.HoraInicio,
                 HoraFin = calendarioTurno.HoraFin
             };
 
             _repository.Add<CalendarioTurnos>(entity);
             
-            return entity;
+            return new ResponseCalendarioTurnosDto {
+                Id = entity.Id,
+                IdEspecialista = entity.IdEspecialista,
+                IdDia = entity.DiaId,
+                HoraInicio = entity.HoraInicio,
+                HoraFin = entity.HoraFin
+            };
         }
 
         public List<ResponseCalendarioTurnosDto> GetAllCalendarioTurnos()

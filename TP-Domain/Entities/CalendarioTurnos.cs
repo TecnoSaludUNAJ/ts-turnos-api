@@ -9,6 +9,7 @@ namespace TP_Domain.Entities
     {
         [Key]
         public int Id { get; set; }
+        public int DiaId { get; set; }
         public Dia Dia { get; set; }
         public DateTime HoraInicio { get; set; }
         public DateTime HoraFin { get; set; }
