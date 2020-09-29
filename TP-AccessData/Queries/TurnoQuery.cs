@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using TP_Domain.DTOs;
+using TP_Domain.Entities;
 using TP_Domain.Queries;
 
 namespace TP_AccessData.Queries
@@ -27,6 +28,17 @@ namespace TP_AccessData.Queries
             var query = db.Query("Turnos");
 
             var result = query.Get<ResponseTurnoDto>();
+
+            return result.ToList();
+        }
+
+        public List<Turno> GetTurnosDelDia(DateTime fecha)
+        {
+            var db = new QueryFactory(connection, sqlKataCompiler);
+
+            var query = db.Query("Turnos").Where("Fecha", "=", fecha);
+
+            var result = query.Get<Turno>();
 
             return result.ToList();
         }

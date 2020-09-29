@@ -7,7 +7,7 @@ namespace TP_Template_API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TurnosController:ControllerBase
+    public class TurnosController : ControllerBase
     {
         private readonly ITurnoService _service;
         public TurnosController(ITurnoService service)

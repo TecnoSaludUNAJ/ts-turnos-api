@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using TP_Domain.DTOs;
+using TP_Domain.Entities;
 using TP_Domain.Queries;
 
 namespace TP_AccessData.Queries
@@ -29,6 +30,19 @@ namespace TP_AccessData.Queries
             var result = query.Get<ResponseCalendarioTurnosDto>();
 
             return result.ToList();
+        }
+
+        public CalendarioTurnos GetCalendarioTurnoDeEspecialista(int DiaId, int IdEspecialista)
+        {
+            var db = new QueryFactory(connection, sqlKataCompiler);
+
+            var query = db.Query("CalendarioTurnos")
+                .Where("DiaId", "=", DiaId)
+                .Where("IdEspecialista", "=", IdEspecialista);
+
+            var result = query.Get<CalendarioTurnos>();
+
+            return result.FirstOrDefault();
         }
     }
 }
