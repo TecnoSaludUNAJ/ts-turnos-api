@@ -41,7 +41,7 @@ namespace TP_Application.Services
             return new ResponseCalendarioTurnosDto {
                 Id = entity.Id,
                 IdEspecialista = entity.IdEspecialista,
-                IdDia = entity.DiaId,
+                DiaId = entity.DiaId,
                 HoraInicio = entity.HoraInicio,
                 HoraFin = entity.HoraFin
             };

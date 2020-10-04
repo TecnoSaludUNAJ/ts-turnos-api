@@ -37,7 +37,7 @@ namespace TP_Application.Services
                 IdEspecialista = turno.IdEspecialista,
                 IdPaciente = turno.IdPaciente,
                 IdConsultorio = turno.IdConsultorio,
-                Fecha = DateTime.Today,
+                Fecha = turno.Fecha,
                 HoraInicio = turno.HoraInicio,
                 HoraFin = turno.HoraFin
             };
@@ -58,6 +58,11 @@ namespace TP_Application.Services
             
             List<Turno> turnosOcupados = _query.GetTurnosDelDia(fecha);
             CalendarioTurnos diaDeAtencion = _calendarioTurnosQuery.GetCalendarioTurnoDeEspecialista(dayId, IdEspecialista);
+
+            if (diaDeAtencion == null)
+            {
+                throw new Exception("No hay turnos disponibles para este dia y la especialidad solicitada.");
+            }
 
             List<ResponseTurnoDto> turnosDisponibles = new List<ResponseTurnoDto>();
 
