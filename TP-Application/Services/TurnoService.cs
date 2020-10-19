@@ -66,7 +66,7 @@ namespace TP_Application.Services
 
             List<ResponseTurnoDto> turnosDisponibles = new List<ResponseTurnoDto>();
 
-            for (DateTime date = diaDeAtencion.HoraInicio ; diaDeAtencion.HoraFin.CompareTo(date) >= 0; date = date.AddMinutes(30))
+            for (DateTime date = diaDeAtencion.HoraInicio ; diaDeAtencion.HoraFin.CompareTo(date.AddMinutes(30)) >= 0; date = date.AddMinutes(30))
             {
                 if (!IsTurnoOcupado(turnosOcupados, date))
                 {
