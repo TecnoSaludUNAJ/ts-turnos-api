@@ -48,6 +48,11 @@ namespace TP_Template_API
             services.AddTransient<ITurnoQuery, TurnoQuery>();
             services.AddTransient<ICalendarioTurnosQuery, CalendarioTurnosQuery>();
             services.AddTransient<IDiaQuery, DiaQuery>();
+
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +66,8 @@ namespace TP_Template_API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseAuthorization();
 
