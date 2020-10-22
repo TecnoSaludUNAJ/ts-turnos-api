@@ -14,7 +14,7 @@ namespace TP_Application.Services
         Turno CreateTurno(TurnoDto turno);
         List<ResponseTurnoDto> GetAllTurnos();
         ResponseTurnoDto GetById(string id);
-        List<ResponseTurnoDto> GetAllTurnosDisponibles(DateTime fecha, int IdEspecialista);
+        List<TurnosByHoursDto> GetAllTurnosDisponibles(DateTime fecha, int IdEspecialista);
     }
     public class TurnoService : ITurnoService
     {
@@ -52,33 +52,50 @@ namespace TP_Application.Services
             return _query.GetAllTurnos();
         }
 
-        public List<ResponseTurnoDto> GetAllTurnosDisponibles(DateTime fecha, int IdEspecialista)
+        public List<TurnosByHoursDto> GetAllTurnosDisponibles(DateTime fecha, int IdEspecialista)
+        {
+            List<TurnosByHoursDto> turnosByHours = new List<TurnosByHoursDto>() { };
+
+            for (DateTime date = fecha; fecha.AddDays(5).Date.CompareTo(date.Date) >= 0; date = date.AddDays(1))
+            {
+                turnosByHours.Add(new TurnosByHoursDto () {
+                    Fecha = date,
+                    Turnos = GetTurnosDisponiblesByDay(date, IdEspecialista)
+                });
+            }
+
+            return turnosByHours;
+        }
+
+        public List<ResponseTurnoDto> GetTurnosDisponiblesByDay(DateTime fecha, int IdEspecialista)
         {
             int dayId = GetDayId(fecha);
-            
+
             List<Turno> turnosOcupados = _query.GetTurnosDelDia(fecha);
             CalendarioTurnos diaDeAtencion = _calendarioTurnosQuery.GetCalendarioTurnoDeEspecialista(dayId, IdEspecialista);
 
             if (diaDeAtencion == null)
             {
-                throw new Exception("No hay turnos disponibles para este dia y la especialidad solicitada.");
+                return null;
             }
 
             List<ResponseTurnoDto> turnosDisponibles = new List<ResponseTurnoDto>();
 
-            for (DateTime date = diaDeAtencion.HoraInicio ; diaDeAtencion.HoraFin.CompareTo(date.AddMinutes(30)) >= 0; date = date.AddMinutes(30))
+            for (DateTime date = diaDeAtencion.HoraInicio; diaDeAtencion.HoraFin.CompareTo(date.AddMinutes(30)) >= 0; date = date.AddMinutes(30))
             {
                 if (!IsTurnoOcupado(turnosOcupados, date))
                 {
-                    turnosDisponibles.Add(new ResponseTurnoDto() {
+                    turnosDisponibles.Add(new ResponseTurnoDto()
+                    {
                         IdEspecialista = IdEspecialista,
                         Fecha = fecha,
                         HoraInicio = date,
                         HoraFin = date.AddMinutes(30),
                     });
+                } else {
+                    turnosDisponibles.Add(null);
                 }
             }
-
 
             return turnosDisponibles;
         }
