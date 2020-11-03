@@ -3,25 +3,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TP_AccessData.Migrations
 {
-    public partial class init : Migration
+    public partial class msturnosDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Dias",
+                name: "Dia",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    nombre = table.Column<string>(nullable: true)
+                    Nombre = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dias", x => x.Id);
+                    table.PrimaryKey("PK_Dia", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Turnos",
+                name: "Turno",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -35,7 +35,7 @@ namespace TP_AccessData.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Turnos", x => x.Id);
+                    table.PrimaryKey("PK_Turno", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -44,7 +44,7 @@ namespace TP_AccessData.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DiaId = table.Column<int>(nullable: true),
+                    DiaId = table.Column<int>(nullable: false),
                     HoraInicio = table.Column<DateTime>(nullable: false),
                     HoraFin = table.Column<DateTime>(nullable: false),
                     IdEspecialista = table.Column<int>(nullable: false)
@@ -53,11 +53,23 @@ namespace TP_AccessData.Migrations
                 {
                     table.PrimaryKey("PK_CalendarioTurnos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CalendarioTurnos_Dias_DiaId",
+                        name: "FK_CalendarioTurnos_Dia_DiaId",
                         column: x => x.DiaId,
-                        principalTable: "Dias",
+                        principalTable: "Dia",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Dia",
+                columns: new[] { "Id", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, "Lunes" },
+                    { 2, "Martes" },
+                    { 3, "Miercoles" },
+                    { 4, "Jueves" },
+                    { 5, "Viernes" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -72,10 +84,10 @@ namespace TP_AccessData.Migrations
                 name: "CalendarioTurnos");
 
             migrationBuilder.DropTable(
-                name: "Turnos");
+                name: "Turno");
 
             migrationBuilder.DropTable(
-                name: "Dias");
+                name: "Dia");
         }
     }
 }

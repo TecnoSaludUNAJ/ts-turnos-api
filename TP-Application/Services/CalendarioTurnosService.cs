@@ -10,7 +10,7 @@ namespace TP_Application.Services
     public interface ICalendarioTurnosService
     {
         ResponseCalendarioTurnosDto CreateCalendarioTurnos(CalendarioTurnosDto calendarioTurno);
-        List<ResponseCalendarioTurnosDto> GetAllCalendarioTurnos();
+        List<CalendarioPost> GetAllCalendarioTurnos();
     }
     public class CalendarioTurnosService : ICalendarioTurnosService
     {
@@ -26,28 +26,29 @@ namespace TP_Application.Services
 
         public ResponseCalendarioTurnosDto CreateCalendarioTurnos(CalendarioTurnosDto calendarioTurno)
         {
-            Dia dia = _queryDia.GetById(calendarioTurno.IdDia);
+            List<CalendarioTurnos> Lista = new List<CalendarioTurnos>(){};
 
-            CalendarioTurnos entity = new CalendarioTurnos
+            foreach (var item in calendarioTurno.CalendarioTurnos)
             {
-                IdEspecialista = calendarioTurno.IdEspecialista,
-                DiaId = dia.Id,
-                HoraInicio = calendarioTurno.HoraInicio,
-                HoraFin = calendarioTurno.HoraFin
-            };
+                
+                CalendarioTurnos entity = new CalendarioTurnos
+                {                 
+                    IdEspecialista = item.IdEspecialista,
+                    DiaId = item.DiaId,
+                    HoraInicio = item.HoraInicio,
+                    HoraFin = item.HoraFin
+                };
 
-            _repository.Add<CalendarioTurnos>(entity);
-            
+                Lista.Add(entity);
+                _repository.Add<CalendarioTurnos>(entity);
+            }
+
             return new ResponseCalendarioTurnosDto {
-                Id = entity.Id,
-                IdEspecialista = entity.IdEspecialista,
-                DiaId = entity.DiaId,
-                HoraInicio = entity.HoraInicio,
-                HoraFin = entity.HoraFin
+                ListaCalendarioTurnos = Lista
             };
         }
 
-        public List<ResponseCalendarioTurnosDto> GetAllCalendarioTurnos()
+        public List<CalendarioPost> GetAllCalendarioTurnos()
         {
             return _query.GetAllCalendarioTurnos();
         }

@@ -21,13 +21,13 @@ namespace TP_AccessData.Queries
             this.sqlKataCompiler = sqlKataCompiler;
         }
 
-        public List<ResponseCalendarioTurnosDto> GetAllCalendarioTurnos()
+        public List<CalendarioPost> GetAllCalendarioTurnos()
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
 
-            var query = db.Query("CalendarioTurnos");
+            var query = db.Query("CalendarioTurnos").SelectRaw("*");
 
-            var result = query.Get<ResponseCalendarioTurnosDto>();
+            var result = query.Get<CalendarioPost>();
 
             return result.ToList();
         }
