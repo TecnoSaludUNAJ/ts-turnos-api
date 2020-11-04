@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TP_AccessData.Migrations
 {
-    public partial class msturnosDB : Migration
+    public partial class msturnos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

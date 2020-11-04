@@ -8,8 +8,8 @@ namespace TP_Domain.DTOs
     {
         public int IdEspecialista { get; set; }
         public int DiaId { get; set; }
-        public DateTime HoraInicio { get; set; }
-        public DateTime HoraFin { get; set; }
+        public string HoraInicio { get; set; }
+        public string HoraFin { get; set; }
 
     }
 }

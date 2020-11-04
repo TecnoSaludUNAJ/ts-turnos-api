@@ -35,8 +35,8 @@ namespace TP_Application.Services
                 {                 
                     IdEspecialista = item.IdEspecialista,
                     DiaId = item.DiaId,
-                    HoraInicio = item.HoraInicio,
-                    HoraFin = item.HoraFin
+                    HoraInicio =Convert.ToDateTime(item.HoraInicio),
+                    HoraFin = Convert.ToDateTime(item.HoraFin)
                 };
 
                 Lista.Add(entity);
