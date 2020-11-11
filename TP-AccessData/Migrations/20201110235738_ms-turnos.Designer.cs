@@ -10,7 +10,7 @@ using TP_AccessData;
 namespace TP_AccessData.Migrations
 {
     [DbContext(typeof(TemplateDbContext))]
-    [Migration("20201104062901_ms-turnos")]
+    [Migration("20201110235738_ms-turnos")]
     partial class msturnos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
