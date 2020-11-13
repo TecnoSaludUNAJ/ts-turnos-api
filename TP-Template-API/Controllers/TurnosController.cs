@@ -16,7 +16,7 @@ namespace TP_Template_API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(TurnoDto turno)
+        public IActionResult Post(RequestTurnoDto turno)
         {
             try
             {
