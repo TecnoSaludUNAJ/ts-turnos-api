@@ -16,12 +16,10 @@ namespace TP_Application.Services
     {
         private readonly IGenericRepository _repository;
         private readonly ICalendarioTurnosQuery _query;
-        private readonly IDiaQuery _queryDia;
-        public CalendarioTurnosService(IGenericRepository repository, ICalendarioTurnosQuery query, IDiaQuery queryDia)
+        public CalendarioTurnosService(IGenericRepository repository, ICalendarioTurnosQuery query)
         {
             _repository = repository;
             _query = query;
-            _queryDia = queryDia;
         }
 
         public ResponseCalendarioTurnosDto CreateCalendarioTurnos(CalendarioTurnosDto calendarioTurno)

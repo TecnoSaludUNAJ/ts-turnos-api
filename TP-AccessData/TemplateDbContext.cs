@@ -30,7 +30,9 @@ namespace TP_AccessData
               new Dia { Id = 2,Nombre = "Martes"},
               new Dia { Id = 3,Nombre = "Miercoles"},
               new Dia { Id = 4,Nombre = "Jueves"},
-              new Dia { Id = 5,Nombre = "Viernes"}
+              new Dia { Id = 5,Nombre = "Viernes"},
+              new Dia { Id = 6, Nombre = "Sabado" },
+              new Dia { Id = 7, Nombre = "Domingo" }
             );
 
         }

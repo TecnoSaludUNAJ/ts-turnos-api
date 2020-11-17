@@ -47,7 +47,6 @@ namespace TP_Template_API
             services.AddTransient<ICalendarioTurnosService, CalendarioTurnosService>();
             services.AddTransient<ITurnoQuery, TurnoQuery>();
             services.AddTransient<ICalendarioTurnosQuery, CalendarioTurnosQuery>();
-            services.AddTransient<IDiaQuery, DiaQuery>();
 
             services.AddCors(c =>
             {
