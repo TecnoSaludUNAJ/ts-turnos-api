@@ -69,7 +69,9 @@ namespace TP_AccessData.Migrations
                     { 2, "Martes" },
                     { 3, "Miercoles" },
                     { 4, "Jueves" },
-                    { 5, "Viernes" }
+                    { 5, "Viernes" },
+                    { 6, "Sabado" },
+                    { 7, "Domingo" }
                 });
 
             migrationBuilder.CreateIndex(
