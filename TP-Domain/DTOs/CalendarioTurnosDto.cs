@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TP_Domain.Entities;
 
 namespace TP_Domain.DTOs
 {
     public class CalendarioTurnosDto
-    {
-        public int IdEspecialista { get; set; }
-        public int IdDia { get; set; }
-        public DateTime HoraInicio { get; set; }
-        public DateTime HoraFin { get; set; }
+    {      
+        public List<CalendarioPost> CalendarioTurnos { get; set; }
     }
 }

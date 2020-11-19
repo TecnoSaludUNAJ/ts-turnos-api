@@ -8,7 +8,7 @@ namespace TP_Domain.Queries
 {
     public interface ICalendarioTurnosQuery
     {
-        List<ResponseCalendarioTurnosDto> GetAllCalendarioTurnos();
+        List<CalendarioPost> GetAllCalendarioTurnos();
 
         CalendarioTurnos GetCalendarioTurnoDeEspecialista(int DiaId, int IdEspecialista);
     }

@@ -21,13 +21,11 @@ namespace TP_Application.Services
         private readonly IGenericRepository _repository;
         private readonly ITurnoQuery _query;
         private readonly ICalendarioTurnosQuery _calendarioTurnosQuery;
-        private readonly IDiaQuery _diaQuery;
-        public TurnoService(IGenericRepository repository, ITurnoQuery query, ICalendarioTurnosQuery calendarioTurnosQuery, IDiaQuery diaQuery)
+        public TurnoService(IGenericRepository repository, ITurnoQuery query, ICalendarioTurnosQuery calendarioTurnosQuery)
         {
             _repository = repository;
             _query = query;
             _calendarioTurnosQuery = calendarioTurnosQuery;
-            _diaQuery = diaQuery;
         }
 
         public Turno CreateTurno(RequestTurnoDto turno)

@@ -10,8 +10,8 @@ using TP_AccessData;
 namespace TP_AccessData.Migrations
 {
     [DbContext(typeof(TemplateDbContext))]
-    [Migration("20200926024710_defaultDays")]
-    partial class defaultDays
+    [Migration("20201110235738_ms-turnos")]
+    partial class msturnos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,7 +28,7 @@ namespace TP_AccessData.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DiaId")
+                    b.Property<int>("DiaId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("HoraFin")
@@ -54,12 +54,39 @@ namespace TP_AccessData.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("nombre")
+                    b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Dias");
+                    b.ToTable("Dia");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Nombre = "Lunes"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Nombre = "Martes"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Nombre = "Miercoles"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Nombre = "Jueves"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Nombre = "Viernes"
+                        });
                 });
 
             modelBuilder.Entity("TP_Domain.Entities.Turno", b =>
@@ -89,14 +116,16 @@ namespace TP_AccessData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Turnos");
+                    b.ToTable("Turno");
                 });
 
             modelBuilder.Entity("TP_Domain.Entities.CalendarioTurnos", b =>
                 {
                     b.HasOne("TP_Domain.Entities.Dia", "Dia")
                         .WithMany()
-                        .HasForeignKey("DiaId");
+                        .HasForeignKey("DiaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
