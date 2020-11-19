@@ -11,7 +11,7 @@ namespace TP_Application.Services
 {
     public interface ITurnoService
     {
-        Turno CreateTurno(TurnoDto turno);
+        Turno CreateTurno(RequestTurnoDto turno);
         List<ResponseTurnoDto> GetAllTurnos();
         ResponseTurnoDto GetById(string id);
         List<TurnosByHoursDto> GetAllTurnosDisponibles(DateTime fecha, int IdEspecialista);
@@ -28,16 +28,17 @@ namespace TP_Application.Services
             _calendarioTurnosQuery = calendarioTurnosQuery;
         }
 
-        public Turno CreateTurno(TurnoDto turno)
+        public Turno CreateTurno(RequestTurnoDto turno)
         {
             Turno entity = new Turno
             {
                 IdEspecialista = turno.IdEspecialista,
                 IdPaciente = turno.IdPaciente,
-                IdConsultorio = turno.IdConsultorio,
+                // #TODO: Change when implement the assigment of rooms
+                IdConsultorio = 1,
                 Fecha = turno.Fecha,
                 HoraInicio = turno.HoraInicio,
-                HoraFin = turno.HoraFin
+                HoraFin = turno.HoraInicio.AddMinutes(30)
             };
 
             _repository.Add<Turno>(entity);
@@ -54,7 +55,7 @@ namespace TP_Application.Services
         {
             List<TurnosByHoursDto> turnosByHours = new List<TurnosByHoursDto>() { };
 
-            for (DateTime date = fecha; fecha.AddDays(5).Date.CompareTo(date.Date) >= 0; date = date.AddDays(1))
+            for (DateTime date = fecha; fecha.AddDays(4).Date.CompareTo(date.Date) >= 0; date = date.AddDays(1))
             {
                 turnosByHours.Add(new TurnosByHoursDto () {
                     Fecha = date,
