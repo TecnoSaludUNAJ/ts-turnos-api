@@ -84,6 +84,16 @@ namespace TP_AccessData.Migrations
                         {
                             Id = 5,
                             Nombre = "Viernes"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Nombre = "Sabado"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Nombre = "Domingo"
                         });
                 });
 

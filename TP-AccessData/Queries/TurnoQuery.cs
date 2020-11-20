@@ -25,7 +25,7 @@ namespace TP_AccessData.Queries
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
 
-            var query = db.Query("Turno")
+            var query = db.Query("Turnos")
                 .WhereDate("Fecha", ">=", DateTime.Now.ToString("MM-dd-yyyy"))
                 .WhereTime("HoraInicio", ">=", DateTime.Now.ToString("HH:mm"))
                 .OrderBy("Fecha");
@@ -39,7 +39,7 @@ namespace TP_AccessData.Queries
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
 
-            var query = db.Query("Turno").Where("Fecha", "=", fecha);
+            var query = db.Query("Turnos").Where("Fecha", "=", fecha);
 
             var result = query.Get<Turno>();
 
@@ -50,7 +50,7 @@ namespace TP_AccessData.Queries
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
 
-            var query = db.Query("Turno")
+            var query = db.Query("Turnos")
                 .Where("Id", "=", id);
 
             return query.FirstOrDefault<ResponseTurnoDto>();
