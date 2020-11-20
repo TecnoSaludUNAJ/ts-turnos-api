@@ -25,8 +25,9 @@ namespace TP_AccessData.Queries
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
 
-            var query = db.Query("Turnos")
-                .WhereTime("Fecha", ">=", DateTime.Now.ToShortDateString())
+            var query = db.Query("Turno")
+                .WhereDate("Fecha", ">=", DateTime.Now.ToString("MM-dd-yyyy"))
+                .WhereTime("HoraInicio", ">=", DateTime.Now.ToString("HH:mm"))
                 .OrderBy("Fecha");
 
             var result = query.Get<ResponseTurnoDto>();
