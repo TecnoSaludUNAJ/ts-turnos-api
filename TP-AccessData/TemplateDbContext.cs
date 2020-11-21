@@ -20,13 +20,8 @@ namespace TP_AccessData
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            foreach (IMutableEntityType entityType in builder.Model.GetEntityTypes())
-            {
-                entityType.SetTableName(entityType.DisplayName());
-            }
-
             builder.Entity<Dia>().HasData(
-              new Dia{Id = 1, Nombre = "Lunes"},
+              new Dia { Id = 1, Nombre = "Lunes"},
               new Dia { Id = 2,Nombre = "Martes"},
               new Dia { Id = 3,Nombre = "Miercoles"},
               new Dia { Id = 4,Nombre = "Jueves"},

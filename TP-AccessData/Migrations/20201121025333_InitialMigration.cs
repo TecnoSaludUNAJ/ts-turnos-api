@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TP_AccessData.Migrations
 {
-    public partial class msturnos : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Dia",
+                name: "Dias",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -17,11 +17,11 @@ namespace TP_AccessData.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dia", x => x.Id);
+                    table.PrimaryKey("PK_Dias", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Turno",
+                name: "Turnos",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -35,7 +35,7 @@ namespace TP_AccessData.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Turno", x => x.Id);
+                    table.PrimaryKey("PK_Turnos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,15 +53,15 @@ namespace TP_AccessData.Migrations
                 {
                     table.PrimaryKey("PK_CalendarioTurnos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CalendarioTurnos_Dia_DiaId",
+                        name: "FK_CalendarioTurnos_Dias_DiaId",
                         column: x => x.DiaId,
-                        principalTable: "Dia",
+                        principalTable: "Dias",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Dia",
+                table: "Dias",
                 columns: new[] { "Id", "Nombre" },
                 values: new object[,]
                 {
@@ -86,10 +86,10 @@ namespace TP_AccessData.Migrations
                 name: "CalendarioTurnos");
 
             migrationBuilder.DropTable(
-                name: "Turno");
+                name: "Turnos");
 
             migrationBuilder.DropTable(
-                name: "Dia");
+                name: "Dias");
         }
     }
 }

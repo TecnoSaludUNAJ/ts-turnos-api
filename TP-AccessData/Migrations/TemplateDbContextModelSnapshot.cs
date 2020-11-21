@@ -57,7 +57,7 @@ namespace TP_AccessData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Dia");
+                    b.ToTable("Dias");
 
                     b.HasData(
                         new
@@ -124,7 +124,7 @@ namespace TP_AccessData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Turno");
+                    b.ToTable("Turnos");
                 });
 
             modelBuilder.Entity("TP_Domain.Entities.CalendarioTurnos", b =>

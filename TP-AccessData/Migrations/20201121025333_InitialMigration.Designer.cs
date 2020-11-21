@@ -10,8 +10,8 @@ using TP_AccessData;
 namespace TP_AccessData.Migrations
 {
     [DbContext(typeof(TemplateDbContext))]
-    [Migration("20201119231132_ms-turnos")]
-    partial class msturnos
+    [Migration("20201121025333_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,7 +59,7 @@ namespace TP_AccessData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Dia");
+                    b.ToTable("Dias");
 
                     b.HasData(
                         new
@@ -126,7 +126,7 @@ namespace TP_AccessData.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Turno");
+                    b.ToTable("Turnos");
                 });
 
             modelBuilder.Entity("TP_Domain.Entities.CalendarioTurnos", b =>

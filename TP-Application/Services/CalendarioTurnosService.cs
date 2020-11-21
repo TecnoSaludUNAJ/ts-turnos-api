@@ -33,7 +33,7 @@ namespace TP_Application.Services
                 {                 
                     IdEspecialista = item.IdEspecialista,
                     DiaId = item.DiaId,
-                    HoraInicio =Convert.ToDateTime(item.HoraInicio),
+                    HoraInicio = Convert.ToDateTime(item.HoraInicio),
                     HoraFin = Convert.ToDateTime(item.HoraFin)
                 };
 
