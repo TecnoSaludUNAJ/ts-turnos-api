@@ -14,5 +14,6 @@ namespace TP_Domain.Entities
         public DateTime HoraInicio { get; set; }
         public DateTime HoraFin { get; set; }
         public int IdEspecialista { get; set; }
+        public int IdEspecialidad { get; set; }
     }
 }

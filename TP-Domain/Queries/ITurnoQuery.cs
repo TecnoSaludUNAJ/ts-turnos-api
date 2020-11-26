@@ -8,8 +8,8 @@ namespace TP_Domain.Queries
 {
     public interface ITurnoQuery
     {
-        List<ResponseTurnoDto> GetAllTurnos();
-        List<Turno> GetTurnosDelDia(DateTime fecha);
+        List<ResponseTurnoDto> GetAllTurnos(int IdPaciente);
+        List<Turno> GetTurnosDelDia(DateTime fecha, int IdEspecialidad);
         ResponseTurnoDto GetById(string id);
     }
 }

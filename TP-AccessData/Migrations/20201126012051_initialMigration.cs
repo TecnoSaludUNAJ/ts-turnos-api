@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TP_AccessData.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,6 +27,7 @@ namespace TP_AccessData.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdEspecialista = table.Column<int>(nullable: false),
+                    IdEspecialidad = table.Column<int>(nullable: false),
                     IdPaciente = table.Column<int>(nullable: false),
                     IdConsultorio = table.Column<int>(nullable: false),
                     Fecha = table.Column<DateTime>(nullable: false),
@@ -47,7 +48,8 @@ namespace TP_AccessData.Migrations
                     DiaId = table.Column<int>(nullable: false),
                     HoraInicio = table.Column<DateTime>(nullable: false),
                     HoraFin = table.Column<DateTime>(nullable: false),
-                    IdEspecialista = table.Column<int>(nullable: false)
+                    IdEspecialista = table.Column<int>(nullable: false),
+                    IdEspecialidad = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

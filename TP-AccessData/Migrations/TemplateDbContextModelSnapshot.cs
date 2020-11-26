@@ -35,6 +35,9 @@ namespace TP_AccessData.Migrations
                     b.Property<DateTime>("HoraInicio")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("IdEspecialidad")
+                        .HasColumnType("int");
+
                     b.Property<int>("IdEspecialista")
                         .HasColumnType("int");
 
@@ -114,6 +117,9 @@ namespace TP_AccessData.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IdConsultorio")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdEspecialidad")
                         .HasColumnType("int");
 
                     b.Property<int>("IdEspecialista")

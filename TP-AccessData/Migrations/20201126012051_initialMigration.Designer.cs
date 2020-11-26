@@ -10,8 +10,8 @@ using TP_AccessData;
 namespace TP_AccessData.Migrations
 {
     [DbContext(typeof(TemplateDbContext))]
-    [Migration("20201121025333_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20201126012051_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,6 +36,9 @@ namespace TP_AccessData.Migrations
 
                     b.Property<DateTime>("HoraInicio")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("IdEspecialidad")
+                        .HasColumnType("int");
 
                     b.Property<int>("IdEspecialista")
                         .HasColumnType("int");
@@ -116,6 +119,9 @@ namespace TP_AccessData.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IdConsultorio")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdEspecialidad")
                         .HasColumnType("int");
 
                     b.Property<int>("IdEspecialista")

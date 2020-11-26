@@ -21,11 +21,12 @@ namespace TP_AccessData.Queries
             this.sqlKataCompiler = sqlKataCompiler;
         }
 
-        public List<ResponseTurnoDto> GetAllTurnos()
+        public List<ResponseTurnoDto> GetAllTurnos(int IdPaciente)
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
 
             var query = db.Query("Turnos")
+                .Where("IdPaciente", "=", IdPaciente)
                 .WhereDate("Fecha", ">=", DateTime.Now.ToString("MM-dd-yyyy"))
                 .OrderBy("Fecha");
 
@@ -35,11 +36,13 @@ namespace TP_AccessData.Queries
             return result.ToList();
         }
 
-        public List<Turno> GetTurnosDelDia(DateTime fecha)
+        public List<Turno> GetTurnosDelDia(DateTime fecha, int IdEspecialidad)
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
 
-            var query = db.Query("Turnos").Where("Fecha", "=", fecha);
+            var query = db.Query("Turnos")
+                .Where("IdEspecialidad", "=", IdEspecialidad)
+                .Where("Fecha", "=", fecha);
 
             var result = query.Get<Turno>();
 

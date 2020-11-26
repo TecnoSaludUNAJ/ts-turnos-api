@@ -29,11 +29,11 @@ namespace TP_Template_API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery]int IdPaciente)
         {
             try
             {
-                return new JsonResult(_service.GetAllTurnos()) { StatusCode = 200 };
+                return new JsonResult(_service.GetAllTurnos(IdPaciente)) { StatusCode = 200 };
             }
             catch (Exception e)
             {

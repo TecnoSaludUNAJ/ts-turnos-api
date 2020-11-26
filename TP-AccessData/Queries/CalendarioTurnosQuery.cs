@@ -32,13 +32,13 @@ namespace TP_AccessData.Queries
             return result.ToList();
         }
 
-        public CalendarioTurnos GetCalendarioTurnoDeEspecialista(int DiaId, int IdEspecialista)
+        public CalendarioTurnos GetCalendarioTurnoDeEspecialista(int DiaId, int IdEspecialidad)
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
 
             var query = db.Query("CalendarioTurnos")
                 .Where("DiaId", "=", DiaId)
-                .Where("IdEspecialista", "=", IdEspecialista);
+                .Where("IdEspecialidad", "=", IdEspecialidad);
 
             var result = query.Get<CalendarioTurnos>();
 

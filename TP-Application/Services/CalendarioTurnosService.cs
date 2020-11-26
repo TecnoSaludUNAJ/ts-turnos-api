@@ -30,7 +30,8 @@ namespace TP_Application.Services
             {
                 
                 CalendarioTurnos entity = new CalendarioTurnos
-                {                 
+                {
+                    IdEspecialidad = item.IdEspecialidad,
                     IdEspecialista = item.IdEspecialista,
                     DiaId = item.DiaId,
                     HoraInicio = Convert.ToDateTime(item.HoraInicio),

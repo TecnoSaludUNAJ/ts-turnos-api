@@ -10,6 +10,6 @@ namespace TP_Domain.Queries
     {
         List<CalendarioPost> GetAllCalendarioTurnos();
 
-        CalendarioTurnos GetCalendarioTurnoDeEspecialista(int DiaId, int IdEspecialista);
+        CalendarioTurnos GetCalendarioTurnoDeEspecialista(int DiaId, int IdEspecialidad);
     }
 }

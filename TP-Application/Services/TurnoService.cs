@@ -12,9 +12,9 @@ namespace TP_Application.Services
     public interface ITurnoService
     {
         Turno CreateTurno(RequestTurnoDto turno);
-        List<ResponseTurnoDto> GetAllTurnos();
+        List<ResponseTurnoDto> GetAllTurnos(int IdPaciente);
         ResponseTurnoDto GetById(string id);
-        List<TurnosByHoursDto> GetAllTurnosDisponibles(DateTime fecha, int IdEspecialista);
+        List<TurnosByHoursDto> GetAllTurnosDisponibles(DateTime fecha, int IdEspecialidad);
     }
     public class TurnoService : ITurnoService
     {
@@ -33,6 +33,7 @@ namespace TP_Application.Services
             Turno entity = new Turno
             {
                 IdEspecialista = turno.IdEspecialista,
+                IdEspecialidad = turno.IdEspecialidad,
                 IdPaciente = turno.IdPaciente,
                 // #TODO: Change when implement the assigment of rooms
                 IdConsultorio = 1,
@@ -46,12 +47,12 @@ namespace TP_Application.Services
             return entity;
         }
 
-        public List<ResponseTurnoDto> GetAllTurnos()
+        public List<ResponseTurnoDto> GetAllTurnos(int IdPaciente)
         {
-            return _query.GetAllTurnos();
+            return _query.GetAllTurnos(IdPaciente);
         }
 
-        public List<TurnosByHoursDto> GetAllTurnosDisponibles(DateTime fecha, int IdEspecialista)
+        public List<TurnosByHoursDto> GetAllTurnosDisponibles(DateTime fecha, int IdEspecialidad)
         {
             List<TurnosByHoursDto> turnosByHours = new List<TurnosByHoursDto>() { };
 
@@ -59,19 +60,19 @@ namespace TP_Application.Services
             {
                 turnosByHours.Add(new TurnosByHoursDto () {
                     Fecha = date,
-                    Turnos = GetTurnosDisponiblesByDay(date, IdEspecialista)
+                    Turnos = GetTurnosDisponiblesByDay(date, IdEspecialidad)
                 });
             }
 
             return turnosByHours;
         }
 
-        public List<ResponseTurnoDto> GetTurnosDisponiblesByDay(DateTime fecha, int IdEspecialista)
+        public List<ResponseTurnoDto> GetTurnosDisponiblesByDay(DateTime fecha, int IdEspecialidad)
         {
             int dayId = GetDayId(fecha);
 
-            List<Turno> turnosOcupados = _query.GetTurnosDelDia(fecha);
-            CalendarioTurnos diaDeAtencion = _calendarioTurnosQuery.GetCalendarioTurnoDeEspecialista(dayId, IdEspecialista);
+            List<Turno> turnosOcupados = _query.GetTurnosDelDia(fecha, IdEspecialidad);
+            CalendarioTurnos diaDeAtencion = _calendarioTurnosQuery.GetCalendarioTurnoDeEspecialista(dayId, IdEspecialidad);
 
             if (diaDeAtencion == null)
             {
@@ -86,7 +87,8 @@ namespace TP_Application.Services
                 {
                     turnosDisponibles.Add(new ResponseTurnoDto()
                     {
-                        IdEspecialista = IdEspecialista,
+                        IdEspecialidad = diaDeAtencion.IdEspecialidad,
+                        IdEspecialista = diaDeAtencion.IdEspecialista,
                         Fecha = fecha,
                         HoraInicio = date,
                         HoraFin = date.AddMinutes(30),

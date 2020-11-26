@@ -16,11 +16,11 @@ namespace TP_Template_API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] DateTime fecha, [FromQuery] int IdEspecialista)
+        public IActionResult Get([FromQuery] DateTime fecha, [FromQuery] int IdEspecialidad)
         {
             try
             {
-                return new JsonResult(_service.GetAllTurnosDisponibles(fecha, IdEspecialista)) { StatusCode = 200 };
+                return new JsonResult(_service.GetAllTurnosDisponibles(fecha, IdEspecialidad)) { StatusCode = 200 };
             }
             catch (Exception e)
             {

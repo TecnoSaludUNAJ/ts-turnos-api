@@ -6,6 +6,7 @@ namespace TP_Domain.DTOs
 {
     public class RequestTurnoDto
     {
+        public int IdEspecialidad { get; set; }
         public int IdEspecialista { get; set; }
         public int IdPaciente { get; set; }
         public DateTime Fecha { get; set; }

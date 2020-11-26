@@ -8,6 +8,7 @@ namespace TP_Domain.Entities
         [Key]
         public int Id { get; set; }
         public int IdEspecialista { get; set; }
+        public int IdEspecialidad { get; set; }
         public int IdPaciente { get; set; }
         public int IdConsultorio { get; set; }
         public DateTime Fecha { get; set; }
