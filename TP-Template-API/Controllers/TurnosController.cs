@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using TP_Application.Services;
 using TP_Domain.DTOs;
@@ -16,6 +17,7 @@ namespace TP_Template_API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Post(RequestTurnoDto turno)
         {
             try
@@ -29,6 +31,7 @@ namespace TP_Template_API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Get([FromQuery]int IdPaciente)
         {
             try
@@ -42,6 +45,7 @@ namespace TP_Template_API.Controllers
         }
 
         [HttpGet("{Id?}")]
+        [Authorize]
         public IActionResult GetById(string Id)
         {
             try
