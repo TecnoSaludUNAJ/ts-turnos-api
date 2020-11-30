@@ -58,5 +58,19 @@ namespace TP_AccessData.Queries
 
             return query.FirstOrDefault<ResponseTurnoDto>();
         }
+
+        public List<ResponseTurnoDto> GetTurnosEspecialista(int IdEspecialista, int especialidad, DateTime fecha)
+        {
+            var db = new QueryFactory(connection, sqlKataCompiler);
+
+            var query = db.Query("Turnos")
+                .Where("IdEspecialista", "=", IdEspecialista)
+                .Where("Fecha", "=", fecha.ToString("MM/dd/yyyy"))
+                .Where("IdEspecialidad", "=", especialidad)
+                .Get<ResponseTurnoDto>()
+                .ToList();
+
+            return query;
+        }
     }
 }

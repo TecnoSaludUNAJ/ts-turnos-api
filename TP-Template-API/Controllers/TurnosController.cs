@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.ComponentModel.DataAnnotations;
 using TP_Application.Services;
 using TP_Domain.DTOs;
 
@@ -56,6 +57,25 @@ namespace TP_Template_API.Controllers
                     return new JsonResult(turno) { StatusCode = 200 };
                 }
                 return new JsonResult(turno) { StatusCode = 404 };
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("Especialista/{Id?}")]
+        [Authorize]
+        public IActionResult GetByEspecialistaId(int Id, [FromQuery][Required] int especialidad, [FromQuery][Required] DateTime fecha)
+        {
+            try
+            {
+                var turnos = _service.GetTurnosEspecialista(Id, especialidad, fecha);
+                if (turnos != null)
+                {
+                    return new JsonResult(turnos) { StatusCode = 200 };
+                }
+                return new JsonResult(turnos) { StatusCode = 404 };
             }
             catch (Exception e)
             {

@@ -15,6 +15,7 @@ namespace TP_Application.Services
         List<ResponseTurnoDto> GetAllTurnos(int IdPaciente);
         ResponseTurnoDto GetById(string id);
         List<TurnosByHoursDto> GetAllTurnosDisponibles(DateTime fecha, int IdEspecialidad);
+        List<ResponseTurnoDto> GetTurnosEspecialista(int IdEspecialista, int especialidad, DateTime fecha);
     }
     public class TurnoService : ITurnoService
     {
@@ -114,6 +115,11 @@ namespace TP_Application.Services
         public ResponseTurnoDto GetById(string id)
         {
             return _query.GetById(id);
+        }
+
+        public List<ResponseTurnoDto> GetTurnosEspecialista(int IdEspecialista, int especialidad, DateTime fecha)
+        {
+            return _query.GetTurnosEspecialista(IdEspecialista, especialidad, fecha);
         }
     }
 }

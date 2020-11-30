@@ -11,5 +11,7 @@ namespace TP_Domain.Queries
         List<ResponseTurnoDto> GetAllTurnos(int IdPaciente);
         List<Turno> GetTurnosDelDia(DateTime fecha, int IdEspecialidad);
         ResponseTurnoDto GetById(string id);
+
+        List<ResponseTurnoDto> GetTurnosEspecialista(int IdEspecialista, int especialidad, DateTime fecha);
     }
 }
