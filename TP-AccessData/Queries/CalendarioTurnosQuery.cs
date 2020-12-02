@@ -44,5 +44,19 @@ namespace TP_AccessData.Queries
 
             return result.FirstOrDefault();
         }
+
+        public CalendarioTurnos GetCalendarioEspecialistaEspecialidad(int DiaId, int IdEspecialidad, int IdEspecialista)
+        {
+            var db = new QueryFactory(connection, sqlKataCompiler);
+
+            var query = db.Query("CalendarioTurnos")
+                .Where("DiaId", "=", DiaId)
+                .Where("IdEspecialidad", "=", IdEspecialidad)
+                .Where("IdEspecialista", "=", IdEspecialista);
+
+            var result = query.Get<CalendarioTurnos>();
+
+            return result.FirstOrDefault();
+        }
     }
 }

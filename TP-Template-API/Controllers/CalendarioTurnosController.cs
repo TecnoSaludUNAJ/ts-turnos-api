@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.ComponentModel.DataAnnotations;
 using TP_Application.Services;
 using TP_Domain.DTOs;
 
@@ -37,6 +38,20 @@ namespace TP_Template_API.Controllers
             try
             {
                 return new JsonResult(_service.GetAllCalendarioTurnos()) { StatusCode = 200 };
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("Especialista/{Id?}")]
+        [Authorize]
+        public IActionResult Gext(int Id, [FromQuery][Required] int DiaId, [FromQuery][Required] int IdEspecialidad)
+        {
+            try
+            {
+                return new JsonResult(_service.GetCalendarioEspecialistaEspecialidad(DiaId, IdEspecialidad, Id)) { StatusCode = 200 };
             }
             catch (Exception e)
             {

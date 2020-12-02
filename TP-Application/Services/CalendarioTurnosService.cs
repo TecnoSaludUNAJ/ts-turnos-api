@@ -11,6 +11,8 @@ namespace TP_Application.Services
     {
         ResponseCalendarioTurnosDto CreateCalendarioTurnos(CalendarioTurnosDto calendarioTurno);
         List<CalendarioPost> GetAllCalendarioTurnos();
+
+        CalendarioTurnos GetCalendarioEspecialistaEspecialidad(int DiaId, int IdEspecialidad, int IdEspecialista);
     }
     public class CalendarioTurnosService : ICalendarioTurnosService
     {
@@ -50,6 +52,11 @@ namespace TP_Application.Services
         public List<CalendarioPost> GetAllCalendarioTurnos()
         {
             return _query.GetAllCalendarioTurnos();
+        }
+
+        public CalendarioTurnos GetCalendarioEspecialistaEspecialidad(int DiaId, int IdEspecialidad, int IdEspecialista)
+        {
+            return _query.GetCalendarioEspecialistaEspecialidad(DiaId, IdEspecialidad, IdEspecialista);
         }
     }
 }
