@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using TP_Domain.Commands;
 using TP_Domain.DTOs;
 using TP_Domain.Entities;
@@ -31,6 +32,7 @@ namespace TP_Application.Services
 
         public Turno CreateTurno(RequestTurnoDto turno)
         {
+            validateCrearTurno(turno);
             Turno entity = new Turno
             {
                 IdEspecialista = turno.IdEspecialista,
@@ -46,6 +48,14 @@ namespace TP_Application.Services
             _repository.Add<Turno>(entity);
             
             return entity;
+        }
+
+        public void validateCrearTurno(RequestTurnoDto turno) {
+            Turno turnoExistente = _query.GetTurnoExistente(turno.IdEspecialista, turno.IdEspecialidad, turno.Fecha, turno.HoraInicio);
+            if (turnoExistente != null)
+            {
+                throw new Exception("El turno el cual intenta reservar ya está reservado.");
+            }
         }
 
         public List<ResponseTurnoDto> GetAllTurnos(int IdPaciente)

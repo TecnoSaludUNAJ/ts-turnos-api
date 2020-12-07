@@ -66,11 +66,24 @@ namespace TP_AccessData.Queries
             var query = db.Query("Turnos")
                 .Where("IdEspecialista", "=", IdEspecialista)
                 .Where("Fecha", "=", fecha.ToString("MM/dd/yyyy"))
-                .Where("IdEspecialidad", "=", especialidad)
+                .Where("IdEspecialidad", "=", especialidad);
+           
+            return query
                 .Get<ResponseTurnoDto>()
-                .ToList();
+                .ToList();;
+        }
 
-            return query;
+        public Turno GetTurnoExistente(int IdEspecialista, int IdEspecialidad, DateTime fecha, DateTime horaInicio)
+        {
+            var db = new QueryFactory(connection, sqlKataCompiler);
+
+            var query = db.Query("Turnos")
+                .Where("IdEspecialista", "=", IdEspecialista)
+                .Where("Fecha", "=", fecha.ToString("MM/dd/yyyy"))
+                .Where("IdEspecialidad", "=", IdEspecialidad)
+                .WhereTime("HoraInicio", "=", horaInicio.ToString("HH:mm"));
+            
+            return query.FirstOrDefault<Turno>();
         }
     }
 }
