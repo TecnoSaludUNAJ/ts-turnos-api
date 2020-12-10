@@ -65,7 +65,7 @@ namespace TP_AccessData.Queries
 
             var query = db.Query("Turnos")
                 .Where("IdEspecialista", "=", IdEspecialista)
-                // .Where("Fecha", "=", fecha.ToString("MM/dd/yyyy"))
+                .Where("Fecha", "=", fecha.ToString("MM-dd-yyyy"))
                 .Where("IdEspecialidad", "=", especialidad);
            
             return query
